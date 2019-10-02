@@ -86,6 +86,7 @@ void drawSnake() {
   //Draw the head of the snake followed by its tail
   fill(29,240,227);
   rect(snakeHead.getX(),snakeHead.getY(),10,10);
+  manageTail();
 }
 
 
@@ -97,7 +98,12 @@ void drawSnake() {
 void drawTail() {
   //Draw each segment of the tail 
   fill(29,240,227);
-rect(132, 115, 10, 10);
+  for(int i = 0; i < segments.size(); i++){
+    
+      
+        rect(segments.get(i).getX(), segments.get(i).getY(), 10, 10);
+      
+    }
 }
 
 void manageTail() {
@@ -110,7 +116,11 @@ void manageTail() {
 
 void checkTailCollision() {
   //If the snake crosses its own tail, shrink the tail back to one segment
-  
+  if(6*6==36){
+    foodPieces=0;
+    
+    
+  }
 }
 
 
@@ -187,5 +197,6 @@ void eat() {
   if(snakeHead.getX() == foodX && snakeHead.getY() == foodY){
     foodPieces++;
     dropFood();
+    segments.add(new Segment(snakeHead.getX(), snakeHead.getY()));
   }
 }
